@@ -1,14 +1,22 @@
 /**
  * Created by huy on 6/20/17.
  */
-var imgDirect = ["funny-cat1","monkey","panda_swap"];
-function checkComplete(img) {
-    var imgDiv = document.getElementsByClassName("img");
-    for(var i =0;i<imgDiv.length;i++)
-        if(imgDiv[i].src.toString().indexOf(img)===-1) return false;
+var img_Name = ["funny-cat1","monkey","panda_swap"];
+function setDefaultForImageTag(){
+    var imgTag = document.getElementsByClassName("img");
+    imgTag[0].attr("src","../image/panda_swap_part1x1.jpg");
+    imgTag[1].attr("src","../image/panda_swap_part2x1.jpg");
+    imgTag[2].attr("src","../image/panda_swap_part3x1.jpg");
+    imgTag[3].attr("src","../image/panda_swap_part4x1.jpg");
+    imgTag[4].attr("src","../image/panda_swap_part5x1.jpg");
+}
+function checkImageTag(img_Name) {
+    var imgTag = document.getElementsByClassName("img");
+    for(var i =0;i<imgTag.length;i++)
+        if(imgTag[i].src.toString().indexOf(img_Name)===-1) return false;
     return true;
 }
-function setComplete(result){
+function setBorderColor(result){
     var color;
     if(result===true) color="red";
     else color = "black";
@@ -16,12 +24,12 @@ function setComplete(result){
 }
 $(document).ready(function(){
     $('.img').click(function(){
-        var x = this.src.toString();
+        var img_source = this.src.toString();
         for(var i=0;i<3;i++){
-            if(x.indexOf(imgDirect[i])>=0) {
-                x = x.replace(imgDirect[i], imgDirect[(i + 1) % 3]);
-                this.src = x;
-                setComplete(checkComplete(imgDirect[(i + 1) % 3]));
+            if(img_source.indexOf(img_Name[i])>=0) {
+                img_source = img_source.replace(img_Name[i], img_Name[(i + 1) % 3]);
+                this.src = img_source;
+                setComplete(checkComplete(img_Name[(i + 1) % 3]));
                 break;
             }
         }
